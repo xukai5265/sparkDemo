@@ -60,6 +60,21 @@
       <artifactId>spark-core_2.11</artifactId>
       <version>2.0.0</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-streaming_2.11 -->
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-streaming_2.11</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+
+    <!-- 这是关键点 http://spark.apache.org/docs/latest/streaming-kafka-0-10-integration.html -->
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
+      <version>2.1.0</version>
+    </dependency>
+
+
     <!-- scala -->
     <dependency>
       <groupId>org.scala-lang</groupId>
@@ -110,7 +125,19 @@
     <testSourceDirectory>src/test/scala</testSourceDirectory>
 
     <plugins>
-
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>cn.xukai.spark.DirectKafkaWordCount</mainClass>
+            </manifest>
+          </archive>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
       <!-- the Maven compiler plugin will compile Java source files -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
