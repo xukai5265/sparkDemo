@@ -1,5 +1,6 @@
 package cn.xukai.spark.streaming
 
+import org.apache.log4j.{Level, Logger}
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
@@ -13,6 +14,10 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
   *   hello world
   */
 object StreamingHelloWorld extends App{
+  Logger.getLogger("org.apache.spark").setLevel(Level.WARN)
+  Logger.getLogger("org.apache.spark.sql").setLevel(Level.WARN)
+  Logger.getLogger("org.apache.spark.streaming").setLevel(Level.WARN)
+
   val sc = new SparkConf().setMaster("local[2]").setAppName("NetworkWordCount")
   val ssc = new StreamingContext(sc,Seconds(1))
 
@@ -24,8 +29,9 @@ object StreamingHelloWorld extends App{
 
   // Count each word in each batch
   val pairs = words.map(word => (word, 1))
-  val wordCounts = pairs.reduceByKey(_ + _)
-
+//  val wordCounts = pairs.reduceByKey(_ + _)
+  val fnc = (a:Int,b:Int)=>(a+b)
+  val wordCounts = pairs.reduceByKeyAndWindow(fnc,Seconds(30),Seconds(10))
   // Print the first ten elements of each RDD generated in this DStream to the console
   wordCounts.print()
 
