@@ -1,18 +1,18 @@
-package cn.xukai.spark
+package cn.xukai.spark.streaming
 
 import org.apache.kafka.common.serialization.StringDeserializer
-import org.apache.spark.streaming.{Minutes, Seconds, StreamingContext}
-import org.apache.spark.{SparkConf}
-import org.apache.spark.streaming.kafka010._
-import org.apache.spark.streaming.kafka010.LocationStrategies.PreferConsistent
+import org.apache.spark.SparkConf
 import org.apache.spark.streaming.kafka010.ConsumerStrategies.Subscribe
+import org.apache.spark.streaming.kafka010.LocationStrategies.PreferConsistent
+import org.apache.spark.streaming.kafka010._
+import org.apache.spark.streaming.{Minutes, Seconds, StreamingContext}
 
 /**
   * Created by xukai on 17-3-22.
   */
 object DirectKafkaWordCount {
   def main(args: Array[String]): Unit = {
-    import org.apache.log4j.{Level,Logger}
+    import org.apache.log4j.{Level, Logger}
     Logger.getLogger("org.apache.spark").setLevel(Level.WARN)
     Logger.getLogger("org.apache.spark.sql").setLevel(Level.WARN)
     Logger.getLogger("org.apache.spark.streaming").setLevel(Level.WARN)
