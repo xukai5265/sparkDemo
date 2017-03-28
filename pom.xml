@@ -111,6 +111,13 @@
       <scope>runtime</scope>
     </dependency>
 
+    <!--es-hadoop-->
+    <dependency>
+      <groupId>org.elasticsearch</groupId>
+      <artifactId>elasticsearch-hadoop</artifactId>
+      <version>5.2.2</version>
+    </dependency>
+
     <!-- testing -->
     <dependency>
       <groupId>org.apache.camel</groupId>
