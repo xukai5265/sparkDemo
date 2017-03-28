@@ -9,6 +9,26 @@ import org.apache.spark.streaming.{Minutes, Seconds, StreamingContext}
 
 /**
   * Created by xukai on 17-3-22.
+  *
+  * ━━━━━━神兽出没━━━━━━
+  * 　　　┏┓　　　┏┓
+  * 　　┏┛┻━━━┛┻┓
+  * 　　┃　　　　　　　┃
+  * 　　┃　　　━　　　┃
+  * 　　┃　┳┛　┗┳　┃
+  * 　　┃　　　　　　　┃
+  * 　　┃　　　┻　　　┃
+  * 　　┃　　　　　　　┃
+  * 　　┗━┓　　　┏━┛
+  * 　　　　┃　　　┃神兽保佑, 永无BUG!
+  * 　　　　 ┃　　　┃Code is far away from bug with the animal protecting
+  * 　　　　┃　　　┗━━━┓
+  * 　　　　┃　　　　　　　┣┓
+  * 　　　　┃　　　　　　　┏┛
+  * 　　　　┗┓┓┏━┳┓┏┛
+  * 　　　　　┃┫┫　┃┫┫
+  * 　　　　　┗┻┛　┗┻┛
+  * ━━━━━━感觉萌萌哒━━━━━━
   */
 object DirectKafkaWordCount {
   def main(args: Array[String]): Unit = {
