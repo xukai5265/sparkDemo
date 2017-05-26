@@ -16,9 +16,9 @@ object ScalaConnectPool {
   def getDataSource={
     if(ds == null){
       ds = new BasicDataSource()
-      ds.setUsername("root")
-      ds.setPassword("123456")
-      ds.setUrl("jdbc:mysql://localhost:3306/sparkStreaming")
+      ds.setUsername("hive")
+      ds.setPassword("hive")
+      ds.setUrl("jdbc:mysql://hadoop-1:3306/test")
       ds.setDriverClassName("com.mysql.jdbc.Driver")
       ds.setInitialSize(20)
       ds.setMaxActive(100)
