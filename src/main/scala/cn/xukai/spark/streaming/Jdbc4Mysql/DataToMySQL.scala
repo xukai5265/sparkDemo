@@ -12,11 +12,15 @@ object DataToMySQL {
     val ssc = new StreamingContext(conf,Seconds(10))
     val streamData = ssc.socketTextStream("hadoop-3",9999)
     val wordCount = streamData.map(line =>(line.split(",")(0),1)).reduceByKeyAndWindow(_+_,Seconds(60))
+
     val hottestWord = wordCount.transform(itemRDD => {
+      // 对value降序，并且取前3
       val top3 = itemRDD.map(pair => (pair._2, pair._1))
         .sortByKey(false).map(pair => (pair._2, pair._1)).take(3)
       ssc.sparkContext.makeRDD(top3)
     })
+
+    //持久化操作
     hottestWord.foreachRDD( rdd =>{
       rdd.foreachPartition(partitionOfRecords =>{
         val connect = ScalaConnectPool.getConnection
